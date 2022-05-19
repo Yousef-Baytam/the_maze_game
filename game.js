@@ -20,5 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    start.addEventListener('pointerover', () => {
+        for (let boundary of boundaries) {
+            boundary.addEventListener('pointerover', losing, { once: true })
+            end.addEventListener('pointerover', winning, { once: true })
+        }
+    }, { once: true })
 })
 
