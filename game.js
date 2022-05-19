@@ -1,9 +1,8 @@
 const game = () => {
-    const boundaries = document.querySelectorAll('.boundary')
+    const boundaries = document.querySelectorAll('.boundary:not(.example)')
     const start = document.querySelector('#start')
     const end = document.querySelector('#end')
     const status = document.querySelector('#status')
-    const box = document.querySelector('.example')
     let score = 0
 
     let endEventlisteners = () => {
