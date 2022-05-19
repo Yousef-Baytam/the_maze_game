@@ -7,11 +7,6 @@ const game = () => {
     let score = 0
 
     let endEventlisteners = () => {
-        status.innerText = `current score is ${ score }`
-        status.style.color = 'black'
-        for (let boundary of boundaries) {
-            boundary.style.backgroundColor = 'rgb(238, 238, 238)'
-        }
         for (let boundary of boundaries) {
             boundary.removeEventListener('pointerover', losing)
         }
@@ -42,6 +37,11 @@ const game = () => {
         for (let boundary of boundaries) {
             boundary.addEventListener('pointerover', losing, { once: true })
             end.addEventListener('pointerover', winning, { once: true })
+        }
+        status.innerText = `current score is ${ score }`
+        status.style.color = 'black'
+        for (let boundary of boundaries) {
+            boundary.style.backgroundColor = 'rgb(238, 238, 238)'
         }
     })
 }
