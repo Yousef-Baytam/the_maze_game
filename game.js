@@ -44,6 +44,16 @@ const game = () => {
         }
     }
 
+    const gameReset = () => {
+        score = 0
+        status.innerText = `Begin by moving your mouse over the "S".`
+        status.style.color = 'black'
+        endEventlisteners()
+        for (let boundary of boundaries) {
+            boundary.style.backgroundColor = 'rgb(238, 238, 238)'
+        }
+    }
+
     start.addEventListener('click', () => {
         for (let boundary of boundaries) {
             boundary.addEventListener('pointerover', losing, { once: true })
@@ -65,6 +75,7 @@ const game = () => {
     reset.style.color = 'White'
     reset.style.borderRadius = '10px'
     document.body.appendChild(reset)
+    reset.addEventListener('click', gameReset)
 }
 
 document.addEventListener('DOMContentLoaded', game)
