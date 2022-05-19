@@ -3,7 +3,15 @@ const game = () => {
     const start = document.querySelector('#start')
     const end = document.querySelector('#end')
     const status = document.querySelector('#status')
+    const box = document.querySelector('.example')
     let score = 0
+
+    let endEventlisteners = () => {
+        for (let boundary of boundaries) {
+            boundary.removeEventListener('pointerover', losing)
+        }
+        end.removeEventListener('pointerover', losing)
+    }
 
     let losing = () => {
         score -= 10
@@ -12,6 +20,7 @@ const game = () => {
         for (let boundary of boundaries) {
             boundary.style.backgroundColor = 'red'
         }
+        endEventlisteners()
     }
 
     let winning = () => {
@@ -21,6 +30,7 @@ const game = () => {
         for (let boundary of boundaries) {
             boundary.removeEventListener('pointerover', losing, { once: true })
         }
+        endEventlisteners()
     }
 
     let reset = () => {
@@ -30,23 +40,16 @@ const game = () => {
         for (let boundary of boundaries) {
             boundary.style.backgroundColor = 'rgb(238, 238, 238)'
         }
-        for (let boundary of boundaries) {
-            boundary.removeEventListener('pointerover', losing)
-        }
-        for (let boundary of boundaries) {
-            end.removeEventListener('pointerover', winning)
-        }
+        endEventlisteners()
         game()
     }
 
-    start.addEventListener('pointerover', () => {
+    start.addEventListener('click', () => {
         for (let boundary of boundaries) {
             boundary.addEventListener('pointerover', losing, { once: true })
             end.addEventListener('pointerover', winning, { once: true })
         }
-    }, { once: true })
-
-    start.addEventListener('click', reset)
+    })
 }
 
 document.addEventListener('DOMContentLoaded', game)
