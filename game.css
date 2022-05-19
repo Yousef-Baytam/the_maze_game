@@ -3,7 +3,8 @@ Game Lab CSS file
 You don't need to download or edit this file.
 */
 
-h1, h2 {
+h1,
+h2 {
 	text-align: center;
 }
 
@@ -19,7 +20,8 @@ p {
 	width: 500px;
 }
 
-#start, #end {
+#start,
+#end {
 	position: absolute;
 	top: 205px;
 	height: 30px;
@@ -27,7 +29,7 @@ p {
 	border: 1px solid black;
 	padding: 5px;
 	cursor: default;
-	
+
 	font-family: "Helvetica", "Arial", sans-serif;
 	font-size: 25pt;
 	text-align: center;
@@ -65,7 +67,7 @@ neighboring elements.  Necessary to avoid giving ids to the boundary divs
 
 #game div.boundary {
 	position: absolute;
-	
+
 	top: 0;
 	left: 0;
 	height: 200px;
@@ -73,38 +75,38 @@ neighboring elements.  Necessary to avoid giving ids to the boundary divs
 	z-index: 1;
 }
 
-#game div.boundary + div.boundary {
+#game div.boundary+div.boundary {
 	border-left: none;
 	border-right: none;
 	z-index: 2;
-	
+
 	left: 151px;
 	height: 50px;
 	width: 198px;
 }
 
-#game div.boundary + div.boundary + div.boundary {
+#game div.boundary+div.boundary+div.boundary {
 	border-left: 1px black solid;
 	border-right: 1px black solid;
 	z-index: 1;
-	
+
 	left: 348px;
 	height: 200px;
 	width: 150px;
 }
 
-#game div.boundary + div.boundary + div.boundary + div.boundary {
+#game div.boundary+div.boundary+div.boundary+div.boundary {
 	border: 1px black solid;
-	
+
 	top: 250px;
 	left: 0;
 	height: 48px;
 	width: 498px;
 }
 
-#game div.boundary + div.boundary + div.boundary + div.boundary + div.boundary {
+#game div.boundary+div.boundary+div.boundary+div.boundary+div.boundary {
 	border-bottom: none;
-	
+
 	top: 100px;
 	left: 200px;
 	height: 150px;
