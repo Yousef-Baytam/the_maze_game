@@ -67,8 +67,8 @@ const game = () => {
         }
         outBoundary.addEventListener('mouseleave', cheating)
     })
-    reset.style.margin = '0 0 0 60em'
-    reset.style.width = '10%'
+    reset.style.margin = '0 0 0 60%'
+    reset.style.width = '100px'
     reset.style.height = '5vh'
     reset.innerText = 'Reset'
     reset.style.backgroundColor = 'red'
