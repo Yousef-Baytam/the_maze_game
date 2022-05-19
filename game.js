@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const game = () => {
     const boundaries = document.querySelectorAll('.boundary')
     const start = document.querySelector('#start')
     const end = document.querySelector('#end')
@@ -30,6 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let boundary of boundaries) {
             boundary.style.backgroundColor = 'rgb(238, 238, 238)'
         }
+        for (let boundary of boundaries) {
+            boundary.removeEventListener('pointerover', losing)
+        }
+        for (let boundary of boundaries) {
+            end.removeEventListener('pointerover', winning)
+        }
+        game()
     }
 
     start.addEventListener('pointerover', () => {
@@ -40,5 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { once: true })
 
     start.addEventListener('click', reset)
-})
+}
 
+document.addEventListener('DOMContentLoaded', game)
