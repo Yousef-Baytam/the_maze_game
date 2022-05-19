@@ -3,24 +3,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const start = document.querySelector('#start')
     const end = document.querySelector('#end')
     const status = document.querySelector('#status')
-    const score = 0
+    let score = 0
 
     let losing = () => {
-        status.innerText = 'You Lost'
+        score -= 10
+        status.innerText = `You lost, your score is ${ score }`
         status.style.color = 'red'
         for (let boundary of boundaries) {
             boundary.style.backgroundColor = 'red'
         }
-        score -= 10
     }
 
     let winning = () => {
-        status.innerText = 'You Won'
+        score += 5
+        status.innerText = `You won, your score is ${ score }`
         status.style.color = 'Green'
         for (let boundary of boundaries) {
             boundary.removeEventListener('pointerover', losing, { once: true })
         }
-        score += 5
+    }
+
+    let reset = () => {
+        score = 0
+        status.innerText = `current score is ${ score }`
+        status.style.color = 'black'
+        for (let boundary of boundaries) {
+            boundary.style.backgroundColor = 'rgb(238, 238, 238)'
+        }
     }
 
     start.addEventListener('pointerover', () => {
@@ -30,5 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { once: true })
 
+    start.addEventListener('click', reset)
 })
 
