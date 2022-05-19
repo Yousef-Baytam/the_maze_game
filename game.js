@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const start = document.querySelector('#start')
     const end = document.querySelector('#end')
     const status = document.querySelector('#status')
+    const score = 0
 
     let losing = () => {
         status.innerText = 'You Lost'
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let boundary of boundaries) {
             boundary.style.backgroundColor = 'red'
         }
+        score -= 10
     }
 
     let winning = () => {
@@ -18,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let boundary of boundaries) {
             boundary.removeEventListener('pointerover', losing, { once: true })
         }
+        score += 5
     }
 
     start.addEventListener('pointerover', () => {
@@ -26,5 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             end.addEventListener('pointerover', winning, { once: true })
         }
     }, { once: true })
+
 })
 
