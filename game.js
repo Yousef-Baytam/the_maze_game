@@ -12,5 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    let winning = () => {
+        status.innerText = 'You Won'
+        status.style.color = 'Green'
+        for (let boundary of boundaries) {
+            boundary.removeEventListener('pointerover', losing, { once: true })
+        }
+    }
+
 })
 
