@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const end = document.querySelector('#end')
     const status = document.querySelector('#status')
 
+    let losing = () => {
+        status.innerText = 'You Lost'
+        status.style.color = 'red'
+        for (let boundary of boundaries) {
+            boundary.style.backgroundColor = 'red'
+        }
+    }
 
 })
 
