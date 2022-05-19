@@ -3,6 +3,7 @@ const game = () => {
     const start = document.querySelector('#start')
     const end = document.querySelector('#end')
     const status = document.querySelector('#status')
+    const outBoundary = document.querySelector('#game')
     let score = 0
 
     let endEventlisteners = () => {
@@ -10,6 +11,7 @@ const game = () => {
             boundary.removeEventListener('pointerover', losing)
         }
         end.removeEventListener('pointerover', winning)
+        outBoundary.removeEventListener('mouseleave', cheating)
     }
 
     let losing = () => {
@@ -32,16 +34,28 @@ const game = () => {
         endEventlisteners()
     }
 
+
+    let cheating = () => {
+        endEventlisteners()
+        status.innerText = `You lost, you tried to cheat`
+        status.style.color = 'red'
+        for (let boundary of boundaries) {
+            boundary.style.backgroundColor = 'red'
+        }
+    }
+
     start.addEventListener('click', () => {
         for (let boundary of boundaries) {
             boundary.addEventListener('pointerover', losing, { once: true })
             end.addEventListener('pointerover', winning, { once: true })
         }
+
         status.innerText = `current score is ${ score }`
         status.style.color = 'black'
         for (let boundary of boundaries) {
             boundary.style.backgroundColor = 'rgb(238, 238, 238)'
         }
+        outBoundary.addEventListener('mouseleave', cheating)
     })
 }
 
