@@ -5,6 +5,11 @@ const game = () => {
     const status = document.querySelector('#status')
     const outBoundary = document.querySelector('#game')
     const scoreDisplay = document.createElement('h2')
+    const timeStat = document.createElement('h2')
+    const liveTime = document.createElement('h2')
+    const lastTime = document.createElement('h2')
+    const bestTime = document.createElement('h2')
+    const timersWrapper = document.createElement('div')
     let score = 0
 
     const UpdateScore = (num = 0) => {
