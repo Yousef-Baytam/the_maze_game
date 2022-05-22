@@ -11,6 +11,10 @@ const game = () => {
     const bestTime = document.createElement('h2')
     const timersWrapper = document.createElement('div')
     let score = 0
+    let liveT = '0:0:0'
+    let bestT = '0:0:0'
+    let lastT = '0:0:0'
+
 
     const UpdateScore = (num = 0) => {
         score += num
@@ -79,11 +83,14 @@ const game = () => {
         outBoundary.addEventListener('mouseleave', cheating)
     }
 
-    timeStat.innerText = 'Time Stats'
+    const timer = setInterval(() => {
 
-    liveTime.innerHTML = '<div>Live</div><div>0:0:0</div>'
-    lastTime.innerHTML = '<div>Last</div><div>0:0:0</div>'
-    bestTime.innerHTML = '<div>Best</div><div>0:0:0</div>'
+    })
+
+    timeStat.innerText = 'Time Stats'
+    liveTime.innerHTML = `<div>Live</div><div>${ liveT }</div>`
+    lastTime.innerHTML = `<div>Last</div><div>${ lastT }</div>`
+    bestTime.innerHTML = `<div>Best</div><div>${ bestT }</div>`
     timersWrapper.appendChild(liveTime)
     timersWrapper.appendChild(lastTime)
     timersWrapper.appendChild(bestTime)
