@@ -90,6 +90,7 @@ const game = () => {
         let msec = 0
         let sec = 0
         let min = 0
+        liveT.value = 0
         timer = setInterval(() => {
             if (msec !== 9) {
                 msec += 1
@@ -104,13 +105,18 @@ const game = () => {
             liveT.time = `${ min }:${ sec }:${ msec }`
             liveT.value += 1
             liveTime.innerHTML = `<div>Live</div><div>${ liveT.time }</div>`
+            console.log(bestT)
         }, 100)
     }
 
     updateTimers = () => {
         console.log(lastT, liveT, bestT)
-        liveT.value < bestT.value ? bestT = liveT : null
-        lastT = liveT
+        if (liveT.value < bestT.value) {
+            bestT.value = liveT.value
+            bestT.time = liveT.time
+        }
+        lastT.value = liveT.value
+        lastT.time = liveT.time
         lastTime.innerHTML = `<div>Last</div><div>${ lastT.time }</div>`
         bestTime.innerHTML = `<div>Best</div><div>${ bestT.time }</div>`
     }
