@@ -84,8 +84,20 @@ const game = () => {
     }
 
     const timer = setInterval(() => {
-
-    })
+        let msec = 0
+        let sec = 0
+        let min = 0
+        if (msec !== 9) {
+            msec += 1
+        } else if (sec !== 59) {
+            sec += 1
+            msec = 0
+        } else {
+            min += 1
+            sec = 0
+            msec = 0
+        }
+    }, 100)
 
     timeStat.innerText = 'Time Stats'
     liveTime.innerHTML = `<div>Live</div><div>${ liveT }</div>`
