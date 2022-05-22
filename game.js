@@ -80,7 +80,7 @@ const game = () => {
     }
 
     timeStat.innerText = 'Time Stats'
-    outBoundary.insertAdjacentElement('afterend', timeStat)
+
     liveTime.innerHTML = '<div>Live</div><div>0:0:0</div>'
     lastTime.innerHTML = '<div>Last</div><div>0:0:0</div>'
     bestTime.innerHTML = '<div>Best</div><div>0:0:0</div>'
@@ -88,7 +88,12 @@ const game = () => {
     timersWrapper.appendChild(lastTime)
     timersWrapper.appendChild(bestTime)
     outBoundary.insertAdjacentElement('afterend', timersWrapper)
+    outBoundary.insertAdjacentElement('afterend', timeStat)
     outBoundary.insertAdjacentElement('afterend', scoreDisplay)
+    timersWrapper.style.display = 'flex'
+    timersWrapper.style.justifyContent = 'space-evenly'
+    timersWrapper.style.width = '50%'
+    timersWrapper.style.marginLeft = '25%'
     start.addEventListener('mouseover', startGame)
     start.addEventListener('click', gameReset)
     UpdateScore()
