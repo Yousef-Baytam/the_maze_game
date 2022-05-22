@@ -4,7 +4,6 @@ const game = () => {
     const end = document.querySelector('#end')
     const status = document.querySelector('#status')
     const outBoundary = document.querySelector('#game')
-    const reset = document.createElement('button')
     const scoreDisplay = document.createElement('h2')
     let score = 0
 
@@ -68,15 +67,6 @@ const game = () => {
         }
         outBoundary.addEventListener('mouseleave', cheating)
     })
-    reset.style.margin = '0 0 0 60%'
-    reset.style.width = '100px'
-    reset.style.height = '5vh'
-    reset.innerText = 'Reset'
-    reset.style.backgroundColor = 'red'
-    reset.style.color = 'White'
-    reset.style.borderRadius = '10px'
-    document.body.appendChild(reset)
-    reset.addEventListener('click', gameReset)
 }
 
 document.addEventListener('DOMContentLoaded', game)
