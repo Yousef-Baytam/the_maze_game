@@ -21,7 +21,18 @@ const game = () => {
         scoreDisplay.innerText = `Your score is: ${ score }`
     }
 
-    let endEventlisteners = () => {
+    const boundaryColor = (color) => {
+        for (let boundary of boundaries) {
+            boundary.style.backgroundColor = `${ color }`
+        }
+    }
+
+    const updateStatus = (msg, color) => {
+        status.innerText = `${ msg }`
+        status.style.color = `${ color }`
+    }
+
+    const endEventlisteners = () => {
         for (let boundary of boundaries) {
             boundary.removeEventListener('pointerover', losing)
         }
@@ -30,32 +41,21 @@ const game = () => {
         clearInterval(timer)
     }
 
-    let boundaryColor = (color) => {
-        for (let boundary of boundaries) {
-            boundary.style.backgroundColor = `${ color }`
-        }
-    }
-
-    let losing = () => {
+    const losing = () => {
         UpdateScore(-10)
-        status.innerText = `You Lost!`
-        status.style.color = 'red'
+        updateStatus(`You Lost!`, 'red')
         boundaryColor('red')
         endEventlisteners()
     }
 
-    let winning = () => {
+    const winning = () => {
         UpdateScore(5)
-        status.innerText = `You Won!`
-        status.style.color = 'Green'
-        for (let boundary of boundaries) {
-            boundary.removeEventListener('pointerover', losing, { once: true })
-        }
+        updateStatus(`You Won!`, 'Green')
         endEventlisteners()
         updateTimers()
     }
 
-    let cheating = () => {
+    const cheating = () => {
         endEventlisteners()
         status.innerText = `You lost, you tried to cheat`
         status.style.color = 'red'
@@ -65,6 +65,10 @@ const game = () => {
     const gameReset = () => {
         score = 0
         UpdateScore()
+        liveT = { time: '0:0:0', value: 0 }
+        bestT = { time: '0:0:0', value: 0 }
+        lastT = { time: '0:0:0', value: 0 }
+        displayTimers()
         status.innerText = `Begin by moving your mouse over the "S".`
         status.style.color = 'black'
         endEventlisteners()
@@ -116,14 +120,17 @@ const game = () => {
         }
         lastT.value = liveT.value
         lastT.time = liveT.time
+        displayTimers()
+    }
+
+    const displayTimers = () => {
+        liveTime.innerHTML = `<div>Live</div><div>${ liveT.time }</div>`
         lastTime.innerHTML = `<div>Last</div><div>${ lastT.time }</div>`
         bestTime.innerHTML = `<div>Best</div><div>${ bestT.time }</div>`
     }
+    displayTimers()
 
     timeStat.innerText = 'Time Stats'
-    liveTime.innerHTML = `<div>Live</div><div>${ liveT.time }</div>`
-    lastTime.innerHTML = `<div>Last</div><div>${ lastT.time }</div>`
-    bestTime.innerHTML = `<div>Best</div><div>${ bestT.time }</div>`
     timersWrapper.appendChild(liveTime)
     timersWrapper.appendChild(lastTime)
     timersWrapper.appendChild(bestTime)
@@ -134,6 +141,7 @@ const game = () => {
     timersWrapper.style.justifyContent = 'space-evenly'
     timersWrapper.style.width = '50%'
     timersWrapper.style.marginLeft = '25%'
+
     start.addEventListener('mouseover', startGame)
     start.addEventListener('click', gameReset)
     UpdateScore()
