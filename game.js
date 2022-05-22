@@ -5,6 +5,7 @@ const game = () => {
     const status = document.querySelector('#status')
     const outBoundary = document.querySelector('#game')
     const reset = document.createElement('button')
+    const scoreDisplay = document.createElement('h2')
     let score = 0
 
     let endEventlisteners = () => {
@@ -54,7 +55,7 @@ const game = () => {
         }
     }
 
-    start.addEventListener('click', () => {
+    start.addEventListener('mouseover', () => {
         for (let boundary of boundaries) {
             boundary.addEventListener('pointerover', losing, { once: true })
             end.addEventListener('pointerover', winning, { once: true })
