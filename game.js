@@ -14,6 +14,7 @@ const game = () => {
     let liveT = '0:0:0'
     let bestT = '0:0:0'
     let lastT = '0:0:0'
+    let timer
 
 
     const UpdateScore = (num = 0) => {
@@ -27,6 +28,7 @@ const game = () => {
         }
         end.removeEventListener('pointerover', winning)
         outBoundary.removeEventListener('mouseleave', cheating)
+        clearInterval(timer)
     }
 
     let losing = () => {
@@ -81,12 +83,14 @@ const game = () => {
             boundary.style.backgroundColor = 'rgb(238, 238, 238)'
         }
         outBoundary.addEventListener('mouseleave', cheating)
+        StartTimer()
     }
-    const StartTimer = (end = false) => {
+
+    const StartTimer = () => {
         let msec = 0
         let sec = 0
         let min = 0
-        const timer = setInterval(() => {
+        timer = setInterval(() => {
             if (msec !== 9) {
                 msec += 1
             } else if (sec !== 59) {
@@ -99,7 +103,6 @@ const game = () => {
             }
             liveT = `${ min }:${ sec }:${ msec }`
             liveTime.innerHTML = `<div>Live</div><div>${ liveT }</div>`
-            end && clearInterval(timer)
         }, 100)
     }
 
