@@ -54,7 +54,7 @@ const game = () => {
         }
     }
 
-    start.addEventListener('mouseover', () => {
+    startGame = () => {
         for (let boundary of boundaries) {
             boundary.addEventListener('pointerover', losing, { once: true })
             end.addEventListener('pointerover', winning, { once: true })
@@ -66,7 +66,10 @@ const game = () => {
             boundary.style.backgroundColor = 'rgb(238, 238, 238)'
         }
         outBoundary.addEventListener('mouseleave', cheating)
-    })
+    }
+
+    start.addEventListener('mouseover', startGame)
+    start.addEventListener('click', gameReset)
 }
 
 document.addEventListener('DOMContentLoaded', game)
