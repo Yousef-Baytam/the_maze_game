@@ -11,11 +11,10 @@ const game = () => {
     const bestTime = document.createElement('h2')
     const timersWrapper = document.createElement('div')
     let score = 0
-    let liveT = '0:0:0'
-    let bestT = '0:0:0'
-    let lastT = '0:0:0'
+    let liveT = { time: '0:0:0', value: 0 }
+    let bestT = { time: '0:0:0', value: 0 }
+    let lastT = { time: '0:0:0', value: 0 }
     let timer
-
 
     const UpdateScore = (num = 0) => {
         score += num
@@ -49,6 +48,7 @@ const game = () => {
             boundary.removeEventListener('pointerover', losing, { once: true })
         }
         endEventlisteners()
+        updateTimers()
     }
 
     let cheating = () => {
@@ -101,15 +101,16 @@ const game = () => {
                 sec = 0
                 msec = 0
             }
-            liveT = `${ min }:${ sec }:${ msec }`
-            liveTime.innerHTML = `<div>Live</div><div>${ liveT }</div>`
+            liveT.time = `${ min }:${ sec }:${ msec }`
+            liveT.value += 1
+            liveTime.innerHTML = `<div>Live</div><div>${ liveT.time }</div>`
         }, 100)
     }
 
     timeStat.innerText = 'Time Stats'
-    liveTime.innerHTML = `<div>Live</div><div>${ liveT }</div>`
-    lastTime.innerHTML = `<div>Last</div><div>${ lastT }</div>`
-    bestTime.innerHTML = `<div>Best</div><div>${ bestT }</div>`
+    liveTime.innerHTML = `<div>Live</div><div>${ liveT.time }</div>`
+    lastTime.innerHTML = `<div>Last</div><div>${ lastT.time }</div>`
+    bestTime.innerHTML = `<div>Best</div><div>${ bestT.time }</div>`
     timersWrapper.appendChild(liveTime)
     timersWrapper.appendChild(lastTime)
     timersWrapper.appendChild(bestTime)
