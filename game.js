@@ -66,7 +66,6 @@ const game = () => {
         score = 0
         UpdateScore()
         liveT = { time: '0:0:0', value: 0 }
-        bestT = { time: '0:0:0', value: 0 }
         lastT = { time: '0:0:0', value: 0 }
         displayTimers()
         status.innerText = `Begin by moving your mouse over the "S".`
@@ -143,6 +142,12 @@ const game = () => {
 
     start.addEventListener('mouseover', startGame)
     start.addEventListener('click', gameReset)
+    start.addEventListener('contextmenu', (e) => {
+        e.preventDefault()
+        gameReset()
+        bestT = { time: '0:0:0', value: 0 }
+        displayTimers()
+    })
     UpdateScore()
 }
 
