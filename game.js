@@ -80,8 +80,7 @@ const game = () => {
             boundary.addEventListener('pointerover', losing, { once: true })
             end.addEventListener('pointerover', winning, { once: true })
         }
-        status.innerText = `Game On!`
-        status.style.color = 'black'
+        updateStatus(`Game On!`, 'black')
         boundaryColor('rgb(238, 238, 238)')
         outBoundary.addEventListener('mouseleave', cheating)
         StartTimer()
