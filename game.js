@@ -12,7 +12,7 @@ const game = () => {
     const timersWrapper = document.createElement('div')
     let score = 0
     let liveT = { time: '0:0:0', value: 0 }
-    let bestT = { time: '0:0:0', value: 0 }
+    let bestT = { time: '0:0:0', value: 10000000000 }
     let lastT = { time: '0:0:0', value: 0 }
     let timer
 
@@ -105,6 +105,14 @@ const game = () => {
             liveT.value += 1
             liveTime.innerHTML = `<div>Live</div><div>${ liveT.time }</div>`
         }, 100)
+    }
+
+    updateTimers = () => {
+        console.log(lastT, liveT, bestT)
+        liveT.value < bestT.value ? bestT = liveT : null
+        lastT = liveT
+        lastTime.innerHTML = `<div>Last</div><div>${ lastT.time }</div>`
+        bestTime.innerHTML = `<div>Best</div><div>${ bestT.time }</div>`
     }
 
     timeStat.innerText = 'Time Stats'
