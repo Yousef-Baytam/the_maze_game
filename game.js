@@ -30,13 +30,17 @@ const game = () => {
         clearInterval(timer)
     }
 
+    let boundaryColor = (color) => {
+        for (let boundary of boundaries) {
+            boundary.style.backgroundColor = `${ color }`
+        }
+    }
+
     let losing = () => {
         UpdateScore(-10)
         status.innerText = `You Lost!`
         status.style.color = 'red'
-        for (let boundary of boundaries) {
-            boundary.style.backgroundColor = 'red'
-        }
+        boundaryColor('red')
         endEventlisteners()
     }
 
@@ -55,9 +59,7 @@ const game = () => {
         endEventlisteners()
         status.innerText = `You lost, you tried to cheat`
         status.style.color = 'red'
-        for (let boundary of boundaries) {
-            boundary.style.backgroundColor = 'red'
-        }
+        boundaryColor('red')
     }
 
     const gameReset = () => {
@@ -66,9 +68,7 @@ const game = () => {
         status.innerText = `Begin by moving your mouse over the "S".`
         status.style.color = 'black'
         endEventlisteners()
-        for (let boundary of boundaries) {
-            boundary.style.backgroundColor = 'rgb(238, 238, 238)'
-        }
+        boundaryColor('rgb(238, 238, 238)')
     }
 
     startGame = () => {
@@ -76,12 +76,9 @@ const game = () => {
             boundary.addEventListener('pointerover', losing, { once: true })
             end.addEventListener('pointerover', winning, { once: true })
         }
-
         status.innerText = `Game On!`
         status.style.color = 'black'
-        for (let boundary of boundaries) {
-            boundary.style.backgroundColor = 'rgb(238, 238, 238)'
-        }
+        boundaryColor('rgb(238, 238, 238)')
         outBoundary.addEventListener('mouseleave', cheating)
         StartTimer()
     }
