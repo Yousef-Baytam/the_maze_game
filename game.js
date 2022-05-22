@@ -10,6 +10,7 @@ const game = () => {
     const lastTime = document.createElement('h2')
     const bestTime = document.createElement('h2')
     const timersWrapper = document.createElement('div')
+    const info = document.querySelector('p:nth-of-type(1)')
     let score = 0
     let liveT = { time: '0:0:0', value: 0 }
     let bestT = { time: '0:0:0', value: 0 }
@@ -139,6 +140,11 @@ const game = () => {
     timersWrapper.style.justifyContent = 'space-evenly'
     timersWrapper.style.width = '50%'
     timersWrapper.style.marginLeft = '25%'
+    let infoText = info.innerText
+    info.innerHTML = `<div><b>* Click on the S block to restart<br>
+    ** Right Click on the S block to restart and reset the best time</b></div
+    <br><br>
+    <div>${ infoText }</div>`
 
     start.addEventListener('mouseover', startGame)
     start.addEventListener('click', gameReset)
