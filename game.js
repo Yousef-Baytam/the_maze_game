@@ -7,6 +7,11 @@ const game = () => {
     const scoreDisplay = document.createElement('h2')
     let score = 0
 
+    const UpdateScore = (num = 0) => {
+        score += num
+        scoreDisplay.innerText = `Your score is: ${ score }`
+    }
+
     let endEventlisteners = () => {
         for (let boundary of boundaries) {
             boundary.removeEventListener('pointerover', losing)
@@ -16,7 +21,7 @@ const game = () => {
     }
 
     let losing = () => {
-        score -= 10
+        UpdateScore(-10)
         status.innerText = `You lost, your score is ${ score }`
         status.style.color = 'red'
         for (let boundary of boundaries) {
@@ -26,7 +31,7 @@ const game = () => {
     }
 
     let winning = () => {
-        score += 5
+        UpdateScore(5)
         status.innerText = `You won, your score is ${ score }`
         status.style.color = 'Green'
         for (let boundary of boundaries) {
@@ -46,6 +51,7 @@ const game = () => {
 
     const gameReset = () => {
         score = 0
+        UpdateScore()
         status.innerText = `Begin by moving your mouse over the "S".`
         status.style.color = 'black'
         endEventlisteners()
@@ -68,8 +74,10 @@ const game = () => {
         outBoundary.addEventListener('mouseleave', cheating)
     }
 
+    outBoundary.insertAdjacentElement('afterend', scoreDisplay)
     start.addEventListener('mouseover', startGame)
     start.addEventListener('click', gameReset)
+    UpdateScore()
 }
 
 document.addEventListener('DOMContentLoaded', game)
