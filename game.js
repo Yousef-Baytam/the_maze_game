@@ -58,8 +58,7 @@ const game = () => {
 
     const cheating = () => {
         endEventlisteners()
-        status.innerText = `You lost, you tried to cheat`
-        status.style.color = 'red'
+        updateStatus(`You lost, you tried to cheat`, 'red')
         boundaryColor('red')
     }
 
@@ -69,8 +68,7 @@ const game = () => {
         liveT = { time: '0:0:0', value: 0 }
         lastT = { time: '0:0:0', value: 0 }
         displayTimers()
-        status.innerText = `Begin by moving your mouse over the "S".`
-        status.style.color = 'black'
+        updateStatus(`Begin by moving your mouse over the "S".`, 'black')
         endEventlisteners()
         boundaryColor('rgb(238, 238, 238)')
     }
